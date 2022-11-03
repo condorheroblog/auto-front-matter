@@ -1,7 +1,8 @@
 {
-	"name": "auto-front-matter",
+	"name": "@condorhero/repo",
 	"type": "module",
 	"version": "0.0.0",
+	"private": true,
 	"description": "Automatic Front Matter for Markdown",
 	"author": "CondorHero",
 	"license": "MIT",
@@ -53,7 +54,12 @@
 		"build": "tsup",
 		"build:watch": "tsup --watch",
 		"typecheck": "tsc --noEmit",
+		"generator-vscode": "yo code ./packages/vscode",
 		"release": "bumpp package.json packages/*/package.json && npm publish"
+	},
+	"optionalDependencies": {
+		"generator-code": "^1.7.1",
+		"yo": "^4.3.0"
 	},
 	"devDependencies": {
 		"@condorhero/eslint-config-typescript": "^0.2.0",

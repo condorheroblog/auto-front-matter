@@ -1,0 +1,40 @@
+{
+	"publisher": "CondorHero",
+	"name": "auto-front-matter",
+	"displayName": "auto-front-matter",
+	"version": "0.0.1",
+	"private": true,
+	"description": "Automatic Front Matter for Markdown",
+	"categories": [
+		"Other"
+	],
+	"main": "./dist/index.js",
+	"icon": "images/ico-128x128.png",
+	"engines": {
+		"vscode": "^1.73.0"
+	},
+	"activationEvents": [
+		"onCommand:auto-front-matter.helloWorld"
+	],
+	"contributes": {
+		"commands": [
+			{
+				"command": "auto-front-matter.helloWorld",
+				"category": "auto-front-matter",
+				"title": "Hello World"
+			}
+		]
+	},
+	"scripts": {
+		"build": "tsup src/index.ts --external vscode",
+		"dev": "nr build --watch",
+		"vscode:prepublish": "nr build",
+		"publish": "vsce publish --no-dependencies",
+		"pack": "vsce package --no-dependencies"
+	},
+	"devDependencies": {
+		"@types/vscode": "^1.73.0",
+		"tsup": "^6.3.0",
+		"vsce": "^2.13.0"
+	}
+}
