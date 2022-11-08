@@ -1,11 +1,18 @@
-import * as vscode from "vscode";
+import type { ExtensionContext } from "vscode";
+import { commands, window, workspace } from "vscode";
 
-export function activate(context: vscode.ExtensionContext) {
+import { triggerFileChange } from "./core";
+
+export async function activate({ subscriptions }: ExtensionContext) {
 	const commandId = "auto-front-matter.helloWorld";
 
-	const disposable = vscode.commands.registerCommand(commandId, () => {
-		vscode.window.showInformationMessage("Hello World from auto-front-matter!");
+	const disposable = commands.registerCommand(commandId, () => {
+		window.showInformationMessage("Hello World from auto-front-matter!");
 	});
 
-	context.subscriptions.push(disposable);
+	console.error("自己启动");
+	subscriptions.push(workspace.onWillSaveTextDocument(triggerFileChange));
+	subscriptions.push(disposable);
 }
+
+export function deactivate() {}

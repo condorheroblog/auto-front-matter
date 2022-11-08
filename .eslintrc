@@ -4,5 +4,8 @@
  * Install the Eslint extension before using this feature.
  */
 {
-	"extends": "@condorhero/eslint-config-typescript"
+	"extends": "@condorhero/eslint-config-typescript",
+	"rules": {
+		"sonarjs/cognitive-complexity": ["error", 100]
+	}
 }

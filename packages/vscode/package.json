@@ -9,11 +9,12 @@
 		"Other"
 	],
 	"main": "./dist/index.js",
-	"icon": "images/ico-128x128.png",
+	"icon": "assets/ico-128x128.png",
 	"engines": {
 		"vscode": "^1.73.0"
 	},
 	"activationEvents": [
+		"workspaceContains:*.md",
 		"onCommand:auto-front-matter.helloWorld"
 	],
 	"contributes": {
@@ -34,6 +35,9 @@
 	},
 	"devDependencies": {
 		"@types/vscode": "^1.73.0",
+		"fast-glob": "^3.2.12",
+		"gray-matter": "^4.0.3",
+		"simple-git": "^3.14.1",
 		"tsup": "^6.3.0",
 		"vsce": "^2.13.0"
 	}
