@@ -1,4 +1,5 @@
+export * from "./fileWillSave";
 export * from "./updateArticle";
 export * from "./readConfigFile";
-export * from "./triggerFileChange";
+export * from "./triggerFileSave";
 export * from "./getWorkspaceFolder";

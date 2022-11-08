@@ -1,9 +1,9 @@
 import type { TextDocumentWillSaveEvent } from "vscode";
 import fg from "fast-glob";
-import { isSupportedFile, setLastModifiedDateOnSave } from "../helpers";
-import { getWorkspaceFolder, readConfigFile } from ".";
+import { isSupportedFile } from "../helpers";
+import { fillWillSave, getWorkspaceFolder, readConfigFile } from ".";
 
-export const triggerFileChange = (event: TextDocumentWillSaveEvent) => {
+export const triggerFileSave = (event: TextDocumentWillSaveEvent) => {
 	const wsFolder = getWorkspaceFolder();
 	if (!wsFolder) return;
 
@@ -19,13 +19,13 @@ export const triggerFileChange = (event: TextDocumentWillSaveEvent) => {
 			const fileMatch = fg.sync(dirname, fnConfig.globOptions);
 			if (fileMatch.includes(document.fileName)) {
 				event.waitUntil(
-					setLastModifiedDateOnSave(document, initialFileInsertLastMod!, wsFolder),
+					fillWillSave(document, initialFileInsertLastMod!, wsFolder),
 				);
 			}
 		}
 		else {
 			event.waitUntil(
-				setLastModifiedDateOnSave(document, initialFileInsertLastMod!, wsFolder),
+				fillWillSave(document, initialFileInsertLastMod!, wsFolder),
 			);
 		}
 	}

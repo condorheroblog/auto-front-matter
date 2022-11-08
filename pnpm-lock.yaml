@@ -34,6 +34,7 @@ importers:
       '@types/vscode': ^1.73.0
       fast-glob: ^3.2.12
       gray-matter: ^4.0.3
+      reading-time: ^1.5.0
       simple-git: ^3.14.1
       tsup: ^6.3.0
       vsce: ^2.13.0
@@ -41,6 +42,7 @@ importers:
       '@types/vscode': registry.npmmirror.com/@types/vscode/1.73.0
       fast-glob: registry.npmmirror.com/fast-glob/3.2.12
       gray-matter: registry.npmmirror.com/gray-matter/4.0.3
+      reading-time: registry.npmmirror.com/reading-time/1.5.0
       simple-git: registry.npmmirror.com/simple-git/3.14.1
       tsup: registry.npmmirror.com/tsup/6.3.0
       vsce: registry.npmmirror.com/vsce/2.13.0
@@ -7798,6 +7800,12 @@ packages:
     engines: {node: '>=8.10.0'}
     dependencies:
       picomatch: registry.npmmirror.com/picomatch/2.3.1
+    dev: true
+
+  registry.npmmirror.com/reading-time/1.5.0:
+    resolution: {integrity: sha512-onYyVhBNr4CmAxFsKS7bz+uTLRakypIe4R+5A824vBSkQy/hB3fZepoVEf8OVAxzLvK+H/jm9TzpI3ETSm64Kg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/reading-time/-/reading-time-1.5.0.tgz}
+    name: reading-time
+    version: 1.5.0
     dev: true
 
   registry.npmmirror.com/rechoir/0.6.2:
