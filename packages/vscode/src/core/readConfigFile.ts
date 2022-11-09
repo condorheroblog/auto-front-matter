@@ -17,8 +17,8 @@ export interface UserConfig {
 	globOptions?: Options
 	insertLastMod: boolean
 	insertReadTime: boolean
-	initialFileInsertLastMod: boolean
-	initialFileInsertReadTime: boolean
+	newFileIsInsertLastMod: boolean
+	newFileIsInsertReadTime: boolean
 	wordsPerMinute: number
 	template: TemplateFrontMatter
 }

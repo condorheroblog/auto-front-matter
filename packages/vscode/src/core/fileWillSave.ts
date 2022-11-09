@@ -10,8 +10,8 @@ export const fileWillSave = async (
 	wsFolder: Uri,
 ) => {
 	const {
-		initialFileInsertLastMod: isInsertLastMod,
-		initialFileInsertReadTime: isInsertReadTime,
+		newFileIsInsertLastMod,
+		newFileIsInsertReadTime,
 		wordsPerMinute,
 		insertLastMod,
 		insertReadTime,
@@ -25,13 +25,13 @@ export const fileWillSave = async (
 		delete article.data.lastmod;
 
 		if (hasUntrackedFile) {
-			if (!isInsertLastMod && !isInsertReadTime)
+			if (!newFileIsInsertLastMod && !newFileIsInsertReadTime)
 				return [];
 
-			if (isInsertLastMod)
+			if (newFileIsInsertLastMod)
 				article = setLastModifiedDateOnSave(article);
 
-			if (isInsertReadTime)
+			if (newFileIsInsertReadTime)
 				article = setDuration(article, wordsPerMinute!);
 		}
 		else {
