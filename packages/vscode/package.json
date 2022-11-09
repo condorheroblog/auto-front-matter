@@ -15,14 +15,14 @@
 	},
 	"activationEvents": [
 		"workspaceContains:*.md",
-		"onCommand:auto-front-matter.helloWorld"
+		"onCommand:auto-front-matter.createTemplate"
 	],
 	"contributes": {
 		"commands": [
 			{
-				"command": "auto-front-matter.helloWorld",
+				"command": "auto-front-matter.createTemplate",
 				"category": "auto-front-matter",
-				"title": "Hello World"
+				"title": "create front-matter template"
 			}
 		]
 	},
