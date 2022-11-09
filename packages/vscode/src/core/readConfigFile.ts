@@ -15,7 +15,10 @@ export interface TemplateFrontMatter {
 export interface UserConfig {
 	dirname: Pattern | Pattern[]
 	globOptions?: Options
+	insertLastMod: boolean
+	insertReadTime: boolean
 	initialFileInsertLastMod: boolean
+	initialFileInsertReadTime: boolean
 	wordsPerMinute: number
 	template: TemplateFrontMatter
 }
@@ -31,6 +34,8 @@ export const readConfigFile = (wsFolder: Uri) => {
 			const userConfig: UserConfig = JSON.parse(localConfig);
 
 			// set default value
+			userConfig.insertLastMod = userConfig.insertLastMod ?? true;
+			userConfig.insertReadTime = userConfig.insertReadTime ?? true;
 			userConfig.dirname = parseUserDir(userConfig.dirname, wsFolder.path);
 			userConfig.wordsPerMinute = userConfig.wordsPerMinute ?? WORDS_PER_MINUTE;
 			if (userConfig?.template?.data?.date)

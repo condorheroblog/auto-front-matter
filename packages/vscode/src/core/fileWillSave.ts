@@ -1,5 +1,5 @@
 import type { TextDocument, Uri } from "vscode";
-import { getArticleFromFrontMatter, getFrontMatterFromDocument, isTrackedFile, setDuration, setLastModifiedDateOnSave } from "../helpers";
+import { getArticleFromFrontMatter, getFrontMatterFromDocument, isUntrackedFile, setDuration, setLastModifiedDateOnSave } from "../helpers";
 
 import { updateArticle } from ".";
 import type { UserConfig } from ".";
@@ -9,17 +9,37 @@ export const fileWillSave = async (
 	fnConfig: UserConfig,
 	wsFolder: Uri,
 ) => {
-	const { initialFileInsertLastMod: isInitialInsertLastMod, wordsPerMinute } = fnConfig;
-	if (!isInitialInsertLastMod && await isTrackedFile(wsFolder, document.fileName))
-		return [];
+	const {
+		initialFileInsertLastMod: isInsertLastMod,
+		initialFileInsertReadTime: isInsertReadTime,
+		wordsPerMinute,
+		insertLastMod,
+		insertReadTime,
+	} = fnConfig;
+
+	const hasUntrackedFile = await isUntrackedFile(wsFolder, document.fileName);
 
 	let article = getFrontMatterFromDocument(document);
 	if (article && article.data && Object.keys(article.data).length) {
-		article = setDuration(article, wordsPerMinute!);
-		article = setLastModifiedDateOnSave(article);
-		const updateDateArticle = getArticleFromFrontMatter(article);
-		return [updateArticle(document, updateDateArticle)];
+		delete article.data.duration;
+		delete article.data.lastmod;
+
+		if (hasUntrackedFile) {
+			if (!isInsertLastMod && !isInsertReadTime)
+				return [];
+
+			if (isInsertLastMod)
+				article = setLastModifiedDateOnSave(article);
+
+			if (isInsertReadTime)
+				article = setDuration(article, wordsPerMinute!);
+		}
+		else {
+			insertLastMod && (article = setLastModifiedDateOnSave(article));
+			insertReadTime && (article = setDuration(article, wordsPerMinute));
+		}
 	}
 
-	return [];
+	const updateDateArticle = getArticleFromFrontMatter(article);
+	return [updateArticle(document, updateDateArticle)];
 };

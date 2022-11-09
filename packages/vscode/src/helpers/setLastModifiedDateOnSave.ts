@@ -4,6 +4,6 @@ export const setLastModifiedDateOnSave = (
 	article: GrayMatterFile<string>,
 ) => {
 	const newArticle = { ...article };
-	newArticle.data.lastMod = new Date(new Date().toISOString());
+	newArticle.data.lastmod = new Date(new Date().toISOString());
 	return newArticle;
 };
