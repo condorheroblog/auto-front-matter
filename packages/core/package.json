@@ -50,7 +50,8 @@
 		"build": "tsup",
 		"build:watch": "tsup --watch"
 	},
-	"devDependencies": {
+	"dependencies": {
+		"cac": "^6.7.14",
 		"fast-glob": "^3.2.12",
 		"gray-matter": "^4.0.3",
 		"reading-time": "^1.5.0",
