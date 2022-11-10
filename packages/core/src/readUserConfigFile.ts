@@ -1,11 +1,10 @@
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import type { Options, Pattern } from "fast-glob";
-import { window } from "vscode";
-import type { Uri } from "vscode";
 
 import { CONFIG_FILE_NAME, TEMPLATE_FRONT_MATTER, WORDS_PER_MINUTE } from "../constant";
-import { parseUserDir, placeholderHelper } from "../helpers";
+import type { NotificationType } from ".";
+import { parseUserDir, placeholderHelper } from ".";
 
 export interface TemplateFrontMatter {
 	data: Record<string, any>
@@ -13,8 +12,8 @@ export interface TemplateFrontMatter {
 }
 
 export interface UserConfig {
-	dirname: Pattern | Pattern[]
-	globOptions?: Options
+	dirname: Pattern[]
+	globOptions: Options
 	insertLastMod: boolean
 	insertReadTime: boolean
 	newFileIsInsertLastMod: boolean
@@ -26,8 +25,8 @@ export interface UserConfig {
 /**
  * Read the config file
  */
-export const readConfigFile = (wsFolder: Uri) => {
-	const configPath = join(wsFolder.path, CONFIG_FILE_NAME);
+export const readUserConfigFile = (workspaceFolder: string, Notification: NotificationType) => {
+	const configPath = join(workspaceFolder, CONFIG_FILE_NAME);
 	if (configPath && existsSync(configPath)) {
 		try {
 			const localConfig = readFileSync(configPath, "utf8");
@@ -36,7 +35,7 @@ export const readConfigFile = (wsFolder: Uri) => {
 			// set default value
 			userConfig.insertLastMod = userConfig.insertLastMod ?? true;
 			userConfig.insertReadTime = userConfig.insertReadTime ?? true;
-			userConfig.dirname = parseUserDir(userConfig.dirname, wsFolder.path);
+			userConfig.dirname = parseUserDir(userConfig.dirname, workspaceFolder);
 			userConfig.wordsPerMinute = userConfig.wordsPerMinute ?? WORDS_PER_MINUTE;
 			if (userConfig?.template?.data?.date)
 				userConfig.template.data.date = placeholderHelper(userConfig.template.data.date);
@@ -46,11 +45,11 @@ export const readConfigFile = (wsFolder: Uri) => {
 			return userConfig;
 		}
 		catch (error) {
-			window.showErrorMessage(`please check your ${CONFIG_FILE_NAME} file`);
+			Notification.error(`please check your ${CONFIG_FILE_NAME} file`);
 		}
 	}
 	else {
-		window.showWarningMessage(`You have no ${CONFIG_FILE_NAME} file, please create ${CONFIG_FILE_NAME} file in your root project`);
+		Notification.warning(`You have no ${CONFIG_FILE_NAME} file, please create ${CONFIG_FILE_NAME} file in your root project`);
 		return undefined;
 	}
 };

@@ -10,7 +10,7 @@ export const parseUserDir = (globDir: Pattern | Pattern[], workspacePath: string
 	}
 
 	if (typeof globDir === "string")
-		return join(workspacePath, globMdExtension(globDir));
+		return [join(workspacePath, globMdExtension(globDir))];
 
-	return join(workspacePath, globMdExtension("."));
+	return [join(workspacePath, globMdExtension("."))];
 };

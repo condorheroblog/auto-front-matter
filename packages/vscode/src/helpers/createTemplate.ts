@@ -1,16 +1,18 @@
 import { join } from "node:path";
 import { existsSync, writeFileSync } from "node:fs";
 import { window, workspace } from "vscode";
-import matter from "gray-matter";
 
-import { getWorkspaceFolder, readConfigFile } from "../core";
-import { getDay, getFullYear, getMonth, isAddmdExtension } from ".";
+import { getDay, getFullYear, getMonth, isAddmdExtension, readUserConfigFile, toMd } from "../../../core/src";
+import { Notification, getWorkspaceFolder } from ".";
 
+/**
+ * use template create a new md file
+ */
 export const createTemplate = async () => {
 	const wsFolder = getWorkspaceFolder();
 	if (!wsFolder) return;
 
-	const fnConfig = readConfigFile(wsFolder);
+	const fnConfig = readUserConfigFile(wsFolder.path, Notification);
 	if (!fnConfig) return;
 
 	const inputFileName = await window.showInputBox({
@@ -21,20 +23,20 @@ export const createTemplate = async () => {
 	});
 
 	if (!inputFileName) {
-		window.showWarningMessage("You did not specify a template title.");
+		Notification.warning("You did not specify a template title.");
 	}
 	else {
 		const filePath = isAddmdExtension(inputFileName);
 		const absFilePath = join(wsFolder.path, filePath);
 		if (existsSync(absFilePath)) {
-			window.showWarningMessage(`(${filePath}) file already exist.`);
+			Notification.warning(`(${filePath}) file already exist.`);
 		}
 		else {
-			const fileContents = matter.stringify(fnConfig.template.content ?? "", fnConfig.template.data);
+			const fileContents = toMd(fnConfig.template.content ?? "", fnConfig.template.data);
 			writeFileSync(absFilePath, fileContents, { encoding: "utf-8" });
 			const doc = await workspace.openTextDocument(absFilePath);
 			doc && window.showTextDocument(doc);
-			window.showInformationMessage(`${filePath} file created successfully.`);
+			Notification.info(`${filePath} file created successfully.`);
 		}
 	}
 };

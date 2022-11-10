@@ -2,11 +2,12 @@ import { existsSync } from "node:fs";
 import { join } from "node:path";
 import { commands, window, workspace } from "vscode";
 
-import { CONFIG_FILE_NAME } from "../constant";
-import { createConfigFile } from "../helpers/createConfigFile";
+import { CONFIG_FILE_NAME } from "../../../core/constant";
+import { createConfigFile } from "../../../core/src";
 
 /**
  * Retrieve the workspace folder
+ * @returns {string | undefined}
  */
 export const getWorkspaceFolder = () => {
 	const folders = workspace.workspaceFolders;
@@ -24,7 +25,7 @@ export const getWorkspaceFolder = () => {
 				}).then((selectedFolder) => {
 					if (selectedFolder) {
 						// create config file
-						createConfigFile(selectedFolder.uri);
+						createConfigFile(selectedFolder.uri.path);
 						// Full reload to make sure the whole extension is reloaded correctly
 						commands.executeCommand("workbench.action.reloadWindow");
 					}
