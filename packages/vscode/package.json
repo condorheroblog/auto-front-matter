@@ -3,8 +3,25 @@
 	"name": "auto-front-matter",
 	"displayName": "auto-front-matter",
 	"version": "0.0.2",
-	"private": true,
 	"description": "Automatic Front Matter for Markdown",
+	"author": "CondorHero",
+	"license": "MIT",
+	"homepage": "https://github.com/condorheroblog/auto-front-matter#readme",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/condorheroblog/auto-front-matter.git"
+	},
+	"bugs": {
+		"url": "https://github.com/condorheroblog/auto-front-matter/issues"
+	},
+	"keywords": [
+		"template-front-matter",
+		"auto-front-matter",
+		"last-modified",
+		"front-matter",
+		"count-read",
+		"duration"
+	],
 	"categories": [
 		"Other"
 	],
