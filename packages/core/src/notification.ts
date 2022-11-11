@@ -1,3 +1,4 @@
+import { red, yellow } from "./helpers";
 export class Notification {
 	public static info(message: string, ...optionalParams: any[]) {
 		// eslint-disable-next-line no-console
@@ -6,12 +7,12 @@ export class Notification {
 	}
 
 	public static error(message: string, ...optionalParams: any[]) {
-		console.error(`\u001B[31m${message}\u001B[39m`, ...optionalParams);
+		console.error(`${red(message)}`, ...optionalParams);
 		return Promise.resolve("ERROR");
 	}
 
 	public static warning(message: string, ...optionalParams: any[]) {
-		console.warn(`\u001B[33m${message}\u001B[39m`, ...optionalParams);
+		console.warn(`${yellow(message)}`, ...optionalParams);
 		return Promise.resolve("WARNING");
 	}
 }

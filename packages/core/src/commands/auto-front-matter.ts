@@ -1,16 +1,23 @@
-import { basename, extname, relative } from "node:path";
-import { readFileSync, writeFileSync } from "node:fs";
+import { basename, extname, join, relative } from "node:path";
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import cac from "cac";
 import chokidar from "chokidar";
+import inquirer from "inquirer";
 import {
 	Notification,
+	getDay,
+	getFullYear,
+	getMonth,
+	isAddmdExtension,
 	isEditable,
 	isSupportedFile,
 	isUntrackedFile,
 	parseUserDir,
 	readUserConfigFile,
+	toMd,
 	updateFrontMatter,
 } from "..";
+import { picocolors } from "../helpers";
 import { version } from "../../package.json";
 
 export const autoFrontMatter = () => {
@@ -26,8 +33,8 @@ export const autoFrontMatter = () => {
 		.action(watch);
 
 	cli
-		.command("create <fileName>", "create a new Markdown file")
-		.action((fileName: string) => { Notification.error(fileName); });
+		.command("create", "create a new Markdown file")
+		.action(createMdFromTemplate);
 
 	cli.parse();
 };
@@ -68,7 +75,8 @@ function watch(dir: string) {
 			if (doc) {
 				writeFileSync(path, doc, { encoding: "utf-8" });
 				watcher.close().then(() => {
-					Notification.info(`\u001B[32m Successfully\u001B[39m file \u001B[37;46m${relative(root, path)}\u001B[39;49m saved`);
+					const relativePath = relative(root, path);
+					Notification.info(`${picocolors.green("Successfully")} file ${picocolors.bgCyan(picocolors.white(relativePath))} saved`);
 					restart();
 				});
 			}
@@ -76,6 +84,41 @@ function watch(dir: string) {
 			.on("error", error => Notification.error(`Watcher error: ${error}`));
 	};
 	restart();
+	Notification.info(`${picocolors.green("Start listening for changes to .md files")}`);
+}
+
+function createMdFromTemplate() {
+	const root = process.cwd();
+	const userConfig = readUserConfigFile(root, Notification);
+
+	if (!userConfig)
+		return;
+	inquirer
+		.prompt([
+			{
+				type: "input",
+				name: "answersFileName",
+				message: "Please input markdown's file name",
+				default() {
+					return `${getFullYear()}-${getMonth()}-${getDay()}.md`;
+				},
+			},
+		])
+		.then(({ answersFileName }) => {
+			const filePath = isAddmdExtension(answersFileName);
+			const absFilePath = join(root, filePath);
+			if (existsSync(absFilePath)) {
+				Notification.warning(`(${filePath}) file already exist.`);
+			}
+			else {
+				const fileContents = toMd(userConfig.template.content ?? "", userConfig.template.data);
+				writeFileSync(absFilePath, fileContents, { encoding: "utf-8" });
+				Notification.info(`${picocolors.green("Successfully")} ${picocolors.blue(filePath)} file created.`);
+			}
+		})
+		.catch((error) => {
+			Notification.error(error);
+		});
 }
 
 autoFrontMatter();
