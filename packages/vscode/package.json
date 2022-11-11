@@ -2,7 +2,7 @@
 	"publisher": "CondorHero",
 	"name": "auto-front-matter",
 	"displayName": "auto-front-matter",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"private": true,
 	"description": "Automatic Front Matter for Markdown",
 	"categories": [

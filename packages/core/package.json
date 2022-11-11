@@ -1,7 +1,7 @@
 {
 	"name": "auto-front-matter",
 	"type": "module",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "Automatic Front Matter for Markdown",
 	"author": "CondorHero",
 	"license": "MIT",
