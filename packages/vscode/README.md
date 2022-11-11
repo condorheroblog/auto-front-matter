@@ -2,7 +2,7 @@
 
 <p align="center">
 	<a href="https://github.com/condorheroblog/auto-front-matter#readme" target="_blank">
-		<img src="https://raw.githubusercontent.com/condorheroblog/auto-front-matter/main/packages/vscode/src/assets/ico-128x128.png" alt="auto-front-matter"/>
+		<img src="https://raw.githubusercontent.com/condorheroblog/auto-front-matter/main/packages/vscode/assets/ico-128x128.png" alt="auto-front-matter"/>
 	</a>
 	<a href="https://marketplace.visualstudio.com/items?itemName=condorhero.auto-front-matter" title="Check it out on the Visual Studio Marketplace"></a>
 </p>
