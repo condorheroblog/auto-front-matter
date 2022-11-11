@@ -9,9 +9,9 @@ import {
 	getFullYear,
 	getMonth,
 	isAddmdExtension,
+	isCommittedFile,
 	isEditable,
 	isSupportedFile,
-	isUntrackedFile,
 	parseUserDir,
 	readUserConfigFile,
 	toMd,
@@ -69,7 +69,7 @@ function watch(dir: string) {
 				editFileName,
 				editFileContents,
 				lineCount: Infinity,
-				isUntrackedFile: await isUntrackedFile(root, editFileName),
+				isCommittedFile: await isCommittedFile(root, editFileName),
 			});
 
 			if (doc) {

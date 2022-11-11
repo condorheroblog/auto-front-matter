@@ -2,7 +2,7 @@ import type { GlobalConfig } from "../../vscode/src/helpers/loadGlobalConfig";
 import { getArticleFromFrontMatter, getFrontMatterFromDocument, setDuration, setLastModifiedDateOnSave } from ".";
 
 export const updateFrontMatter = ({
-	isUntrackedFile,
+	isCommittedFile,
 	userConfig,
 	editFileContents,
 }: GlobalConfig) => {
@@ -19,7 +19,7 @@ export const updateFrontMatter = ({
 		delete article.data.duration;
 		delete article.data.lastmod;
 
-		if (isUntrackedFile) {
+		if (!isCommittedFile) {
 			if (!newFileIsInsertLastMod && !newFileIsInsertReadTime)
 				return;
 

@@ -1,7 +1,7 @@
 import type { TextDocument } from "vscode";
 
 import type { UserConfig } from "../../../core/src";
-import { isEditable, isSupportedFile, isUntrackedFile } from "../../../core/src";
+import { isCommittedFile, isEditable, isSupportedFile } from "../../../core/src";
 
 /**
  * merge user config and vscode text document
@@ -26,7 +26,7 @@ export const loadGlobalConfig = async (
 		editFileName,
 		editFileContents,
 		lineCount,
-		isUntrackedFile: await isUntrackedFile(workspaceFolder, editFileName),
+		isCommittedFile: await isCommittedFile(workspaceFolder, editFileName),
 	};
 };
 
