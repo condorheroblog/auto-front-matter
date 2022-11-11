@@ -6,12 +6,12 @@ export class Notification {
 	}
 
 	public static error(message: string, ...optionalParams: any[]) {
-		console.error(`${message}`, ...optionalParams);
+		console.error(`\u001B[31m${message}\u001B[39m`, ...optionalParams);
 		return Promise.resolve("ERROR");
 	}
 
 	public static warning(message: string, ...optionalParams: any[]) {
-		console.warn(`${message}`, ...optionalParams);
+		console.warn(`\u001B[33m${message}\u001B[39m`, ...optionalParams);
 		return Promise.resolve("WARNING");
 	}
 }

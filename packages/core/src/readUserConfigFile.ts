@@ -2,7 +2,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import type { Options, Pattern } from "fast-glob";
 
-import { CONFIG_FILE_NAME, TEMPLATE_FRONT_MATTER, WORDS_PER_MINUTE } from "../constant";
+import { CONFIG_FILE_NAME, TEMPLATE_FRONT_MATTER, WORDS_PER_MINUTE } from "./constant";
 import type { NotificationType } from ".";
 import { parseUserDir, placeholderHelper } from ".";
 

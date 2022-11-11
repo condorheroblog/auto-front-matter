@@ -13,7 +13,7 @@ import {
 } from "../src";
 import {
 	WORDS_PER_MINUTE,
-} from "../constant";
+} from "../src/constant";
 
 const mdTemplate = `---
 date: 2018-10-28T06:29:54.000Z

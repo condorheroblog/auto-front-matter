@@ -25,11 +25,11 @@
 		".": {
 			"types": "./dist/index.d.ts",
 			"require": "./dist/index.js",
-			"import": "./dist/index.mjs"
+			"import": "./dist/esm/index.js"
 		}
 	},
 	"main": "dist/index.js",
-	"module": "dist/index.mjs",
+	"module": "./dist/esm/index.js",
 	"types": "dist/index.d.ts",
 	"typesVersions": {
 		"*": {
@@ -39,8 +39,12 @@
 			]
 		}
 	},
+	"bin": {
+		"auto-front-matter": "./bin/auto-front-matter.mjs"
+	},
 	"files": [
-		"dist"
+		"dist",
+		"bin"
 	],
 	"scripts": {
 		"prepublishOnly": "nr build",
@@ -52,6 +56,7 @@
 	},
 	"dependencies": {
 		"cac": "^6.7.14",
+		"chokidar": "^3.5.3",
 		"fast-glob": "^3.2.12",
 		"gray-matter": "^4.0.3",
 		"reading-time": "^1.5.0",

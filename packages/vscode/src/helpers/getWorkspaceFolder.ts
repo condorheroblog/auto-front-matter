@@ -2,7 +2,7 @@ import { existsSync } from "node:fs";
 import { join } from "node:path";
 import { commands, window, workspace } from "vscode";
 
-import { CONFIG_FILE_NAME } from "../../../core/constant";
+import { CONFIG_FILE_NAME } from "../../../core/src/constant";
 import { createConfigFile } from "../../../core/src";
 
 /**

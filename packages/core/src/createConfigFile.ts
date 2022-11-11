@@ -1,7 +1,7 @@
 import { existsSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
-import { CONFIG_FILE_NAME } from "../constant";
+import { CONFIG_FILE_NAME } from "./constant";
 
 /**
  * @param workspaceFolder
