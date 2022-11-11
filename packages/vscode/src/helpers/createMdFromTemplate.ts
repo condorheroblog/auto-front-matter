@@ -8,7 +8,7 @@ import { Notification, getWorkspaceFolder } from ".";
 /**
  * use template create a new md file
  */
-export const createTemplate = async () => {
+export const createMdFromTemplate = async () => {
 	const wsFolder = getWorkspaceFolder();
 	if (!wsFolder) return;
 

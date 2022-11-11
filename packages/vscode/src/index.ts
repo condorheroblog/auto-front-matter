@@ -1,12 +1,12 @@
 import type { ExtensionContext } from "vscode";
 import { commands, workspace } from "vscode";
 
-import { createTemplate, triggerFileSave } from "./helpers";
+import { createMdFromTemplate, triggerFileSave } from "./helpers";
 
 export function activate({ subscriptions }: ExtensionContext) {
-	const commandId = "auto-front-matter.createTemplate";
+	const commandId = "auto-front-matter.createMdFromTemplate";
 	const disposable = commands.registerCommand(commandId, () => {
-		createTemplate();
+		createMdFromTemplate();
 	});
 
 	// save md files to the disk

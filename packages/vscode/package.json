@@ -15,14 +15,14 @@
 	},
 	"activationEvents": [
 		"workspaceContains:*.md",
-		"onCommand:auto-front-matter.createTemplate"
+		"onCommand:auto-front-matter.createMdFromTemplate"
 	],
 	"contributes": {
 		"commands": [
 			{
-				"command": "auto-front-matter.createTemplate",
+				"command": "auto-front-matter.createMdFromTemplate",
 				"category": "auto-front-matter",
-				"title": "create front-matter template"
+				"title": "create Markdown from template"
 			}
 		]
 	},
