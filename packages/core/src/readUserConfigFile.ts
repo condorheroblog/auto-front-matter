@@ -22,7 +22,7 @@ interface UserConfig {
 	template?: TemplateFrontMatter
 }
 
-export type DefaultUserSetting = Required<UserConfig>;
+export interface DefaultUserSetting extends Required<UserConfig> {}
 
 /**
  * Read the config file
