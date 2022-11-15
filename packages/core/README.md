@@ -46,17 +46,19 @@ A `frontmatter.json` file is required in the project directory. The `frontmatter
 - `newFileIsInsertLastMod`: Whether to insert `lastmod` in `front-matter` for uncommitted file, default `false`.
 - `newFileIsInsertReadTime`: Whether to insert `duration` in `front-matter` for uncommitted file, default `false`.
 - `wordsPerMinute`: words per minute, default `500`.
-- `template`: Creating Markdown file depends on this template, default [TEMPLATE_FRONT_MATTER](https://github.com/condorheroblog/auto-front-matter/blob/main/packages/core/src/constant/index.ts#LL3C22-L3C22).
+- `template`: Creating Markdown file depends on this template, default [GET_DEFAULT_FRONT_MATTER](https://github.com/condorheroblog/auto-front-matter/blob/main/packages/core/src/constant/index.ts#LL3C22-L3C22).
 
 ```js
-const TEMPLATE_FRONT_MATTER = {
-	data: {
-		date: new Date(new Date().toISOString()),
-		author: "CondorHero",
-		tags: ["hello", "world"],
-		categories: "blog",
-	},
-	content: "\n# Hello World!\n",
+export const GET_DEFAULT_FRONT_MATTER = () => {
+	return {
+		data: {
+			date: new Date(new Date().toISOString()),
+			author: "CondorHero",
+			tags: ["hello", "world"],
+			categories: "blog",
+		},
+		content: "\n# Hello World!\n",
+	};
 };
 ```
 

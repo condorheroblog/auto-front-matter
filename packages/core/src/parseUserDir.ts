@@ -3,7 +3,7 @@ import type { Pattern } from "fast-glob";
 
 import { globMdExtension } from ".";
 
-export const parseUserDir = (globDir: Pattern | Pattern[], workspacePath: string) => {
+export const parseUserDir = (globDir: Pattern | Pattern[] | undefined, workspacePath: string) => {
 	if (Array.isArray(globDir)) {
 		return globDir.map(
 			dirItem => join(workspacePath, globMdExtension(dirItem)));

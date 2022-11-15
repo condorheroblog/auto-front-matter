@@ -1,6 +1,6 @@
 import type { TextDocument } from "vscode";
 
-import type { UserConfig } from "../../../core/src";
+import type { DefaultUserSetting } from "../../../core/src";
 import { isCommittedFile, isEditable, isSupportedFile } from "../../../core/src";
 
 /**
@@ -12,7 +12,7 @@ import { isCommittedFile, isEditable, isSupportedFile } from "../../../core/src"
  */
 export const loadGlobalConfig = async (
 	document: TextDocument,
-	userConfig: UserConfig,
+	userConfig: DefaultUserSetting,
 	workspaceFolder: string,
 ) => {
 	const { languageId, fileName: editFileName, lineCount } = document;

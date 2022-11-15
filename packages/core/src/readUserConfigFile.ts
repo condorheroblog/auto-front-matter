@@ -2,7 +2,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import type { Options, Pattern } from "fast-glob";
 
-import { CONFIG_FILE_NAME, TEMPLATE_FRONT_MATTER, WORDS_PER_MINUTE } from "./constant";
+import { CONFIG_FILE_NAME, GET_DEFAULT_FRONT_MATTER, WORDS_PER_MINUTE } from "./constant";
 import type { NotificationType } from ".";
 import { parseUserDir, placeholderHelper } from ".";
 
@@ -11,16 +11,18 @@ export interface TemplateFrontMatter {
 	content?: string
 }
 
-export interface UserConfig {
-	dirname: Pattern[]
-	globOptions: Options
-	insertLastMod: boolean
-	insertReadTime: boolean
-	newFileIsInsertLastMod: boolean
-	newFileIsInsertReadTime: boolean
-	wordsPerMinute: number
-	template: TemplateFrontMatter
+interface UserConfig {
+	dirname?: Pattern[]
+	globOptions?: Options
+	insertLastMod?: boolean
+	insertReadTime?: boolean
+	newFileIsInsertLastMod?: boolean
+	newFileIsInsertReadTime?: boolean
+	wordsPerMinute?: number
+	template?: TemplateFrontMatter
 }
+
+export type DefaultUserSetting = Required<UserConfig>;
 
 /**
  * Read the config file
@@ -31,18 +33,19 @@ export const readUserConfigFile = (workspaceFolder: string, Notification: Notifi
 		try {
 			const localConfig = readFileSync(configPath, "utf8");
 			const userConfig: UserConfig = JSON.parse(localConfig);
+			const defaultUserSetting: DefaultUserSetting = {} as DefaultUserSetting;
 
 			// set default value
-			userConfig.insertLastMod = userConfig.insertLastMod ?? true;
-			userConfig.insertReadTime = userConfig.insertReadTime ?? true;
-			userConfig.dirname = parseUserDir(userConfig.dirname, workspaceFolder);
-			userConfig.wordsPerMinute = userConfig.wordsPerMinute ?? WORDS_PER_MINUTE;
+			defaultUserSetting.insertLastMod = userConfig.insertLastMod ?? true;
+			defaultUserSetting.insertReadTime = userConfig.insertReadTime ?? true;
+			defaultUserSetting.dirname = parseUserDir(userConfig.dirname, workspaceFolder);
+			defaultUserSetting.wordsPerMinute = userConfig.wordsPerMinute ?? WORDS_PER_MINUTE;
 			if (userConfig?.template?.data?.date)
 				userConfig.template.data.date = placeholderHelper(userConfig.template.data.date);
 
-			userConfig.template = userConfig.template ?? TEMPLATE_FRONT_MATTER;
+			defaultUserSetting.template = userConfig.template ?? GET_DEFAULT_FRONT_MATTER();
 
-			return userConfig;
+			return defaultUserSetting;
 		}
 		catch (error) {
 			Notification.error(`please check your ${CONFIG_FILE_NAME} file`);
