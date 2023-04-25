@@ -59,9 +59,9 @@
 		"chokidar": "^3.5.3",
 		"fast-glob": "^3.2.12",
 		"gray-matter": "^4.0.3",
-		"inquirer": "^9.1.4",
+		"inquirer": "^9.2.0",
 		"reading-time": "^1.5.0",
-		"simple-git": "^3.14.1"
+		"simple-git": "^3.18.0"
 	},
 	"devDependencies": {
 		"@types/inquirer": "^9.0.3"

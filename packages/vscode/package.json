@@ -51,7 +51,7 @@
 		"pack": "vsce package --no-dependencies"
 	},
 	"devDependencies": {
-		"@types/vscode": "^1.73.0",
-		"vsce": "^2.14.0"
+		"@types/vscode": "^1.77.0",
+		"vsce": "^2.15.0"
 	}
 }
