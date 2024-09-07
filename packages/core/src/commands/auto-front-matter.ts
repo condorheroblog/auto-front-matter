@@ -1,6 +1,6 @@
 import { basename, extname, join, relative } from "node:path";
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
-import cac from "cac";
+import { cac } from "cac";
 import chokidar from "chokidar";
 import inquirer from "inquirer";
 import {
@@ -105,7 +105,11 @@ function createMdFromTemplate() {
 			},
 		])
 		.then(({ answersFileName }) => {
-			const filePath = isAddmdExtension(answersFileName);
+			const filePath = join(
+				root,
+				...userConfig.dirname,
+				isAddmdExtension(answersFileName),
+			);
 			const absFilePath = join(root, filePath);
 			if (existsSync(absFilePath)) {
 				Notification.warning(`(${filePath}) file already exist.`);
