@@ -6,15 +6,15 @@ import { getWorkspaceFolder, Notification } from ".";
 import { ensureMarkdownExtension, getDay, getFullYear, getMonth, readUserConfigFile, toMd } from "../../../core/src";
 
 /**
- * use template create a new md file
+ * use template create a new markdown file
  */
 export async function createMdFromTemplate() {
 	const wsFolder = getWorkspaceFolder();
 	if (!wsFolder)
 		return;
 
-	const fnConfig = readUserConfigFile(wsFolder.path, Notification);
-	if (!fnConfig)
+	const userConfig = readUserConfigFile(wsFolder.path, Notification);
+	if (!userConfig)
 		return;
 
 	const inputFileName = await window.showInputBox({
@@ -34,7 +34,7 @@ export async function createMdFromTemplate() {
 			Notification.warning(`(${filePath}) file already exist.`);
 		}
 		else {
-			const fileContents = toMd(fnConfig.template.content ?? "", fnConfig.template.data);
+			const fileContents = toMd(userConfig.template.content ?? "", userConfig.template.data);
 			writeFileSync(absFilePath, fileContents, { encoding: "utf-8" });
 			const doc = await workspace.openTextDocument(absFilePath);
 			if (doc) {

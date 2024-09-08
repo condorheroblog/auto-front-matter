@@ -33,7 +33,7 @@ You can get the extension via:
 
 A `frontmatter.json` file is required in the project directory. The `frontmatter.json` file supports the following fields:
 
-- `dirname`: Specify the directory to be updated.using [glob](https://github.com/isaacs/node-glob), default current directory.
+- `dirname`: Specify the directory to be updated, using [glob](https://github.com/isaacs/node-glob) by default, the current directory.
 - `globOptions`: [glob](https://github.com/isaacs/node-glob)'s [options](https://github.com/isaacs/node-glob#options).
 - `insertLastMod`: Whether to insert `lastmod` in `front-matter`, default `true`.
 - `insertReadTime`: Whether to insert `duration` in `front-matter`, default `true`.
