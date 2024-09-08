@@ -1,10 +1,10 @@
 import matter from "gray-matter";
 import { describe, expect, it } from "vitest";
 import {
+	ensureMarkdownExtension,
 	getArticleFromFrontMatter,
 	getFrontMatterFromDocument,
 	globMdExtension,
-	isAddedExtension,
 	isSupportedFile,
 	parseUserDir,
 	setDuration,
@@ -55,8 +55,8 @@ describe("function", () => {
 		expect(dirArr2.length).toBe(2);
 	});
 
-	it("isAddedExtension", () => {
-		const path = isAddedExtension("pkg");
+	it("ensureMarkdownExtension", () => {
+		const path = ensureMarkdownExtension("pkg");
 		expect(path.endsWith(".md")).toBe(true);
 	});
 

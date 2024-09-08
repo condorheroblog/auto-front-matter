@@ -5,10 +5,10 @@ import { input } from "@inquirer/prompts";
 import cac from "cac";
 import chokidar from "chokidar";
 import {
+	ensureMarkdownExtension,
 	getDay,
 	getFullYear,
 	getMonth,
-	isAddedExtension,
 	isCommittedFile,
 	isEditable,
 	isSupportedFile,
@@ -102,7 +102,7 @@ function createMdFromTemplate() {
 		},
 	)
 		.then((answersFileName) => {
-			const filePath = isAddedExtension(answersFileName);
+			const filePath = ensureMarkdownExtension(answersFileName);
 			const absFilePath = join(root, filePath);
 			if (existsSync(absFilePath)) {
 				Notification.warning(`(${filePath}) file already exist.`);

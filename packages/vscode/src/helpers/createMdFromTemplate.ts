@@ -3,7 +3,7 @@ import { join } from "node:path";
 import { window, workspace } from "vscode";
 
 import { getWorkspaceFolder, Notification } from ".";
-import { getDay, getFullYear, getMonth, isAddedExtension, readUserConfigFile, toMd } from "../../../core/src";
+import { ensureMarkdownExtension, getDay, getFullYear, getMonth, readUserConfigFile, toMd } from "../../../core/src";
 
 /**
  * use template create a new md file
@@ -28,7 +28,7 @@ export async function createMdFromTemplate() {
 		Notification.warning("You did not specify a template title.");
 	}
 	else {
-		const filePath = isAddedExtension(inputFileName);
+		const filePath = ensureMarkdownExtension(inputFileName);
 		const absFilePath = join(wsFolder.path, filePath);
 		if (existsSync(absFilePath)) {
 			Notification.warning(`(${filePath}) file already exist.`);
