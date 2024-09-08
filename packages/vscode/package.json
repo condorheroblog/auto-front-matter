@@ -28,7 +28,7 @@
 	"main": "./dist/index.js",
 	"icon": "assets/ico-128x128.png",
 	"engines": {
-		"vscode": "^1.73.0"
+		"vscode": "^1.93.0"
 	},
 	"activationEvents": [
 		"workspaceContains:**/frontmatter.json"
