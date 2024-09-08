@@ -32,20 +32,7 @@ export function readUserConfigFile(workspaceFolder: string, Notification: Notifi
 	if (configPath && existsSync(configPath)) {
 		try {
 			const localConfig = readFileSync(configPath, "utf8");
-			const userConfig: UserConfig = JSON.parse(localConfig);
-			const defaultUserSetting: DefaultUserSetting = {} as DefaultUserSetting;
-
-			// set default value
-			defaultUserSetting.insertLastMod = userConfig.insertLastMod ?? true;
-			defaultUserSetting.insertReadTime = userConfig.insertReadTime ?? true;
-			defaultUserSetting.dirname = parseUserDir(userConfig.dirname, workspaceFolder);
-			defaultUserSetting.wordsPerMinute = userConfig.wordsPerMinute ?? WORDS_PER_MINUTE;
-			if (userConfig?.template?.data?.date)
-				userConfig.template.data.date = placeholderHelper(userConfig.template.data.date);
-
-			defaultUserSetting.template = userConfig.template ?? GET_DEFAULT_FRONT_MATTER();
-
-			return defaultUserSetting;
+			return parseUserConfig(localConfig, workspaceFolder);
 		}
 		catch {
 			Notification.error(`Please check your ${CONFIG_FILE_NAME} file`);
@@ -55,4 +42,26 @@ export function readUserConfigFile(workspaceFolder: string, Notification: Notifi
 		Notification.warning(`You have no ${CONFIG_FILE_NAME} file, please create ${CONFIG_FILE_NAME} file in your root project`);
 		return undefined;
 	}
+}
+
+/**
+ * Parse the user config
+ */
+export function parseUserConfig(localConfig: string, workspaceFolder: string) {
+	const userConfig: UserConfig = JSON.parse(localConfig);
+	const defaultUserSetting = {} as DefaultUserSetting;
+
+	// Set default value
+	defaultUserSetting.insertLastMod = userConfig.insertLastMod ?? true;
+	defaultUserSetting.insertReadTime = userConfig.insertReadTime ?? true;
+	defaultUserSetting.dirname = parseUserDir(userConfig.dirname, workspaceFolder);
+	defaultUserSetting.wordsPerMinute = userConfig.wordsPerMinute ?? WORDS_PER_MINUTE;
+	defaultUserSetting.newFileIsInsertLastMod = userConfig.newFileIsInsertLastMod ?? false;
+	defaultUserSetting.newFileIsInsertReadTime = userConfig.newFileIsInsertReadTime ?? false;
+	if (userConfig?.template?.data?.date)
+		userConfig.template.data.date = placeholderHelper(userConfig.template.data.date);
+
+	defaultUserSetting.template = userConfig.template ?? GET_DEFAULT_FRONT_MATTER();
+
+	return defaultUserSetting;
 }

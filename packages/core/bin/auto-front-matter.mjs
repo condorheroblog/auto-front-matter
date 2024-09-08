@@ -1,4 +1,4 @@
 #!/usr/bin/env node
 "use strict";
 
-import("../dist/esm/commands/auto-front-matter.js");
+import("../dist/commands/auto-front-matter.js");

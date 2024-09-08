@@ -8,7 +8,7 @@ import {
 	getDay,
 	getFullYear,
 	getMonth,
-	isAddmdExtension,
+	isAddedExtension,
 	isCommittedFile,
 	isEditable,
 	isSupportedFile,
@@ -102,7 +102,7 @@ function createMdFromTemplate() {
 		},
 	)
 		.then((answersFileName) => {
-			const filePath = isAddmdExtension(answersFileName);
+			const filePath = isAddedExtension(answersFileName);
 			const absFilePath = join(root, filePath);
 			if (existsSync(absFilePath)) {
 				Notification.warning(`(${filePath}) file already exist.`);

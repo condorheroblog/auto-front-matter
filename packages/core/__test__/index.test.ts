@@ -4,7 +4,7 @@ import {
 	getArticleFromFrontMatter,
 	getFrontMatterFromDocument,
 	globMdExtension,
-	isAddmdExtension,
+	isAddedExtension,
 	isSupportedFile,
 	parseUserDir,
 	setDuration,
@@ -55,8 +55,8 @@ describe("function", () => {
 		expect(dirArr2.length).toBe(2);
 	});
 
-	it("isAddmdExtension", () => {
-		const path = isAddmdExtension("pkg");
+	it("isAddedExtension", () => {
+		const path = isAddedExtension("pkg");
 		expect(path.endsWith(".md")).toBe(true);
 	});
 
