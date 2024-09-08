@@ -1,6 +1,7 @@
 {
 	"name": "@condorhero/repo",
 	"type": "module",
+	"version": "0.0.5",
 	"private": true,
 	"packageManager": "pnpm@9.9.0",
 	"description": "Automatic Front Matter for Markdown",
