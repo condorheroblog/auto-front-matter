@@ -1,10 +1,7 @@
-import type { GrayMatterFile } from "gray-matter";
 import readingTime from "reading-time";
+import type { GrayMatterFile } from "gray-matter";
 
-export const setDuration = (
-	article: GrayMatterFile<string>,
-	wordsPerMinute: number,
-) => {
+export function setDuration(article: GrayMatterFile<string>,	wordsPerMinute: number) {
 	const duration = readingTime(article.content, { wordsPerMinute }).minutes;
 	return {
 		...article,
@@ -13,4 +10,4 @@ export const setDuration = (
 			duration: `${Math.ceil(duration)} min`,
 		},
 	};
-};
+}

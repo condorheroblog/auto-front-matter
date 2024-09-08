@@ -2,9 +2,9 @@ import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import type { Options, Pattern } from "fast-glob";
 
+import { parseUserDir, placeholderHelper } from ".";
 import { CONFIG_FILE_NAME, GET_DEFAULT_FRONT_MATTER, WORDS_PER_MINUTE } from "./constant";
 import type { NotificationType } from ".";
-import { parseUserDir, placeholderHelper } from ".";
 
 export interface TemplateFrontMatter {
 	data: Record<string, any>
@@ -27,7 +27,7 @@ export interface DefaultUserSetting extends Required<UserConfig> {}
 /**
  * Read the config file
  */
-export const readUserConfigFile = (workspaceFolder: string, Notification: NotificationType) => {
+export function readUserConfigFile(workspaceFolder: string, Notification: NotificationType) {
 	const configPath = join(workspaceFolder, CONFIG_FILE_NAME);
 	if (configPath && existsSync(configPath)) {
 		try {
@@ -47,12 +47,12 @@ export const readUserConfigFile = (workspaceFolder: string, Notification: Notifi
 
 			return defaultUserSetting;
 		}
-		catch (error) {
-			Notification.error(`please check your ${CONFIG_FILE_NAME} file`);
+		catch {
+			Notification.error(`Please check your ${CONFIG_FILE_NAME} file`);
 		}
 	}
 	else {
 		Notification.warning(`You have no ${CONFIG_FILE_NAME} file, please create ${CONFIG_FILE_NAME} file in your root project`);
 		return undefined;
 	}
-};
+}

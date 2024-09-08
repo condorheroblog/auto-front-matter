@@ -1,7 +1,7 @@
 import type { TextDocument } from "vscode";
 
-import type { DefaultUserSetting } from "../../../core/src";
 import { isCommittedFile, isEditable, isSupportedFile } from "../../../core/src";
+import type { DefaultUserSetting } from "../../../core/src";
 
 /**
  * merge user config and vscode text document
@@ -10,11 +10,7 @@ import { isCommittedFile, isEditable, isSupportedFile } from "../../../core/src"
  * @param workspaceFolder - workspace folder
  * @returns GlobalConfig
  */
-export const loadGlobalConfig = async (
-	document: TextDocument,
-	userConfig: DefaultUserSetting,
-	workspaceFolder: string,
-) => {
+export async function loadGlobalConfig(document: TextDocument,	userConfig: DefaultUserSetting,	workspaceFolder: string) {
 	const { languageId, fileName: editFileName, lineCount } = document;
 	const editFileContents = document.getText();
 
@@ -28,6 +24,6 @@ export const loadGlobalConfig = async (
 		lineCount,
 		isCommittedFile: await isCommittedFile(workspaceFolder, editFileName),
 	};
-};
+}
 
 export type GlobalConfig = Awaited<ReturnType<typeof loadGlobalConfig>>;

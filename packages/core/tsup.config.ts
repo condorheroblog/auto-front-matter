@@ -4,7 +4,7 @@ export default defineConfig({
 	entry: ["src/**/*.ts"],
 	dts: true,
 	format: ["cjs", "esm"],
-	legacyOutput: true,
+	legacyOutput: false,
 	shims: true,
 	clean: true,
 });

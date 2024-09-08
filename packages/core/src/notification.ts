@@ -1,4 +1,5 @@
 import { red, yellow } from "./helpers";
+
 export class Notification {
 	public static info(message: string, ...optionalParams: any[]) {
 		// eslint-disable-next-line no-console

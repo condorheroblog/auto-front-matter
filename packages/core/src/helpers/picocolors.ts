@@ -1,5 +1,5 @@
-
 import tty from "node:tty";
+
 const hasColors = tty.WriteStream.prototype.hasColors();
 
 const formatter = (startCode: string, endCode: string) => hasColors ? (str: string) => `${startCode}${str}${endCode}` : (str: any) => str;

@@ -1,5 +1,5 @@
-import type { ExtensionContext } from "vscode";
 import { commands, workspace } from "vscode";
+import type { ExtensionContext } from "vscode";
 
 import { createMdFromTemplate, triggerFileSave } from "./helpers";
 

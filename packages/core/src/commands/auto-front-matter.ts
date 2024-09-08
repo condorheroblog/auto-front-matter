@@ -1,10 +1,10 @@
-import { basename, extname, join, relative } from "node:path";
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import { basename, extname, join, relative } from "node:path";
+import process from "node:process";
+import { input } from "@inquirer/prompts";
 import cac from "cac";
 import chokidar from "chokidar";
-import inquirer from "inquirer";
 import {
-	Notification,
 	getDay,
 	getFullYear,
 	getMonth,
@@ -12,15 +12,16 @@ import {
 	isCommittedFile,
 	isEditable,
 	isSupportedFile,
+	Notification,
 	parseUserDir,
 	readUserConfigFile,
 	toMd,
 	updateFrontMatter,
 } from "..";
-import { picocolors } from "../helpers";
 import { version } from "../../package.json";
+import { picocolors } from "../helpers";
 
-export const autoFrontMatter = () => {
+export function autoFrontMatter() {
 	const cli = cac("auto-front-matter");
 
 	cli
@@ -37,7 +38,7 @@ export const autoFrontMatter = () => {
 		.action(createMdFromTemplate);
 
 	cli.parse();
-};
+}
 
 function watch(dir: string) {
 	const root = process.cwd();
@@ -93,18 +94,14 @@ function createMdFromTemplate() {
 
 	if (!userConfig)
 		return;
-	inquirer
-		.prompt([
-			{
-				type: "input",
-				name: "answersFileName",
-				message: "Please input markdown's file name",
-				default() {
-					return `${getFullYear()}-${getMonth()}-${getDay()}.md`;
-				},
-			},
-		])
-		.then(({ answersFileName }) => {
+	input(
+		{
+			required: true,
+			message: "Please input markdown's file name",
+			default: `${getFullYear()}-${getMonth()}-${getDay()}.md`,
+		},
+	)
+		.then((answersFileName) => {
 			const filePath = isAddmdExtension(answersFileName);
 			const absFilePath = join(root, filePath);
 			if (existsSync(absFilePath)) {

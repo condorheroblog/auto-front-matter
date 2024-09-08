@@ -1,15 +1,17 @@
 import type { TextDocumentWillSaveEvent } from "vscode";
+import { getWorkspaceFolder, loadGlobalConfig, Notification, updateArticle } from ".";
 import { readUserConfigFile, updateFrontMatter } from "../../../core/src";
-import { Notification, getWorkspaceFolder, loadGlobalConfig, updateArticle } from ".";
 
-export const triggerFileSave = (event: TextDocumentWillSaveEvent) => {
+export function triggerFileSave(event: TextDocumentWillSaveEvent) {
 	const document = event.document;
 
 	const wsFolder = getWorkspaceFolder();
-	if (!wsFolder) return;
+	if (!wsFolder)
+		return;
 
 	const userConfig = readUserConfigFile(wsFolder.path, Notification);
-	if (!userConfig) return;
+	if (!userConfig)
+		return;
 
 	// return a promise TextEdit Array
 	const fillSavePromise = async () => {
@@ -22,4 +24,4 @@ export const triggerFileSave = (event: TextDocumentWillSaveEvent) => {
 		return [];
 	};
 	event.waitUntil(fillSavePromise());
-};
+}

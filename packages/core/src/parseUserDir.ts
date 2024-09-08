@@ -3,14 +3,15 @@ import type { Pattern } from "fast-glob";
 
 import { globMdExtension } from ".";
 
-export const parseUserDir = (globDir: Pattern | Pattern[] | undefined, workspacePath: string) => {
+export function parseUserDir(globDir: Pattern | Pattern[] | undefined, workspacePath: string) {
 	if (Array.isArray(globDir)) {
 		return globDir.map(
-			dirItem => join(workspacePath, globMdExtension(dirItem)));
+			dirItem => join(workspacePath, globMdExtension(dirItem)),
+		);
 	}
 
 	if (typeof globDir === "string")
 		return [join(workspacePath, globMdExtension(globDir))];
 
 	return [join(workspacePath, globMdExtension("."))];
-};
+}

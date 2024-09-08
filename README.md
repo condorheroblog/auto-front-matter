@@ -21,7 +21,6 @@ Automatic Front Matter for Markdown
 
 > Motivation: [vscode-front-matter](https://github.com/estruyf/vscode-front-matter) fails to automatically update reading-time.
 
-
 ## Installation
 
 You can get the extension via:
@@ -31,7 +30,7 @@ You can get the extension via:
 - Or by clicking on the following link: <a href="" title="open extension in VS Code" data-vscode="vscode:extension/condorhero.auto-front-matter">open extension in VS Code</a>
 - `npm install -D auto-front-matter`
 
-## features
+## Features
 
 1. Automatically insert `lastmod` and `duration` when saving the md file.
 2. Create an md file according to the template and use the VS Code command panel.
@@ -42,7 +41,6 @@ Mac: ⇧+⌘+P
 ```
 ![⇧+⌘+P](https://user-images.githubusercontent.com/47056890/201308506-a3200f6a-81be-41f4-994b-57d09613bee5.png)
 
-
 ## auto-front-matter in NPM
 
 [Click to view the manual](https://github.com/condorheroblog/auto-front-matter/blob/main/packages/core/README.md)
@@ -50,6 +48,7 @@ Mac: ⇧+⌘+P
 ## auto-front-matter in VS Code
 
 [Click to view the manual](https://github.com/condorheroblog/auto-front-matter/blob/main/packages/vscode/README.md)
+
 ## License
 
 [MIT](https://github.com/condorheroblog/auto-front-matter/blob/main/LICENSE)

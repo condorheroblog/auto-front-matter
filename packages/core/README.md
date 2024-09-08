@@ -49,7 +49,7 @@ A `frontmatter.json` file is required in the project directory. The `frontmatter
 - `template`: Creating Markdown file depends on this template, default [GET_DEFAULT_FRONT_MATTER](https://github.com/condorheroblog/auto-front-matter/blob/main/packages/core/src/constant/index.ts#LL3C22-L3C22).
 
 ```js
-export const GET_DEFAULT_FRONT_MATTER = () => {
+export function GET_DEFAULT_FRONT_MATTER() {
 	return {
 		data: {
 			date: new Date(new Date().toISOString()),
@@ -59,11 +59,9 @@ export const GET_DEFAULT_FRONT_MATTER = () => {
 		},
 		content: "\n# Hello World!\n",
 	};
-};
+}
 ```
 
 ## License
 
 [MIT](https://github.com/condorheroblog/auto-front-matter/blob/main/LICENSE)
-
-

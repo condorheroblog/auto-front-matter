@@ -7,7 +7,7 @@ import { CONFIG_FILE_NAME } from "./constant";
  * @param workspaceFolder
  * Create the frontmatter.json file
  */
-export const createConfigFile = (workspaceFolder: string) => {
+export function createConfigFile(workspaceFolder: string) {
 	const initialConfig = {
 		name: CONFIG_FILE_NAME,
 	};
@@ -17,4 +17,4 @@ export const createConfigFile = (workspaceFolder: string) => {
 		if (!existsSync(configPath))
 			writeFileSync(configPath, JSON.stringify(initialConfig, null, 2), "utf8");
 	}
-};
+}

@@ -2,14 +2,14 @@ import { existsSync } from "node:fs";
 import { join } from "node:path";
 import { commands, window, workspace } from "vscode";
 
-import { CONFIG_FILE_NAME } from "../../../core/src/constant";
 import { createConfigFile } from "../../../core/src";
+import { CONFIG_FILE_NAME } from "../../../core/src/constant";
 
 /**
  * Retrieve the workspace folder
- * @returns {string | undefined}
+ * @returns {string | undefined} - the workspace folder
  */
-export const getWorkspaceFolder = () => {
+export function getWorkspaceFolder() {
 	const folders = workspace.workspaceFolders;
 	if (folders) {
 		if (folders.length === 1) {
@@ -38,4 +38,4 @@ export const getWorkspaceFolder = () => {
 	}
 	window.showWarningMessage("You have no workspace, please open a new workspace");
 	return undefined;
-};
+}

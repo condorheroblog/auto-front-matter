@@ -9,7 +9,7 @@
 
 > Automatically insert lastmod/duration in front-matter when you save an md file，and VS Code >= 1.7.3
 
-## features
+## Features
 
 1. Automatically insert `lastmod` and `duration` when saving the md file.
 2. Create an md file according to the template and use the VS Code command panel.
@@ -19,7 +19,6 @@ Windows: ⇧+ctrl+P
 Mac: ⇧+⌘+P
 ```
 ![⇧+⌘+P](https://user-images.githubusercontent.com/47056890/201308506-a3200f6a-81be-41f4-994b-57d09613bee5.png)
-
 
 ## Installation
 
@@ -44,7 +43,7 @@ A `frontmatter.json` file is required in the project directory. The `frontmatter
 - `template`: Creating Markdown file depends on this template, default [GET_DEFAULT_FRONT_MATTER](https://github.com/condorheroblog/auto-front-matter/blob/main/packages/core/src/constant/index.ts#LL3C22-L3C22).
 
 ```js
-export const GET_DEFAULT_FRONT_MATTER = () => {
+export function GET_DEFAULT_FRONT_MATTER() {
 	return {
 		data: {
 			date: new Date(new Date().toISOString()),
@@ -54,11 +53,9 @@ export const GET_DEFAULT_FRONT_MATTER = () => {
 		},
 		content: "\n# Hello World!\n",
 	};
-};
+}
 ```
 
 ## License
 
 [MIT](https://github.com/condorheroblog/auto-front-matter/blob/main/LICENSE)
-
-

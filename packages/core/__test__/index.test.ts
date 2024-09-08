@@ -1,5 +1,5 @@
-import { describe, expect, it } from "vitest";
 import matter from "gray-matter";
+import { describe, expect, it } from "vitest";
 import {
 	getArticleFromFrontMatter,
 	getFrontMatterFromDocument,

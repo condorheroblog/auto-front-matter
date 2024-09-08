@@ -2,6 +2,7 @@
 	"name": "@condorhero/repo",
 	"type": "module",
 	"private": true,
+	"packageManager": "pnpm@9.9.0",
 	"description": "Automatic Front Matter for Markdown",
 	"author": "CondorHero",
 	"license": "MIT",
@@ -13,35 +14,6 @@
 	"bugs": {
 		"url": "https://github.com/condorheroblog/auto-front-matter/issues"
 	},
-	"keywords": [
-		"template-front-matter",
-		"auto-front-matter",
-		"last-modified",
-		"front-matter",
-		"count-read",
-		"duration"
-	],
-	"exports": {
-		".": {
-			"types": "./dist/index.d.ts",
-			"require": "./dist/index.js",
-			"import": "./dist/index.mjs"
-		}
-	},
-	"main": "dist/index.js",
-	"module": "dist/index.mjs",
-	"types": "dist/index.d.ts",
-	"typesVersions": {
-		"*": {
-			"*": [
-				"./dist/*",
-				"./dist/index.d.ts"
-			]
-		}
-	},
-	"files": [
-		"dist"
-	],
 	"scripts": {
 		"postinstall": "simple-git-hooks",
 		"prepublishOnly": "nr build",
@@ -49,26 +21,26 @@
 		"lint:fix": "eslint . --fix",
 		"coverage": "vitest run --coverage",
 		"test": "vitest",
-		"build": "tsup",
-		"build:watch": "tsup --watch",
+		"dev:vscode": "pnpm --filter ./packages/vscode dev",
 		"typecheck": "tsc --noEmit",
 		"generator-vscode": "yo code ./packages/vscode",
 		"release": "bumpp -r && npm publish"
 	},
 	"optionalDependencies": {
-		"generator-code": "^1.7.7",
-		"yo": "^4.3.1"
+		"generator-code": "^1.11.2",
+		"yo": "^5.0.0"
 	},
 	"devDependencies": {
-		"@condorhero/eslint-config-typescript": "^0.2.0",
-		"bumpp": "^9.1.1",
-		"eslint": "^8.44.0",
-		"esno": "^0.16.3",
-		"lint-staged": "^13.2.3",
-		"simple-git-hooks": "^2.8.1",
-		"tsup": "^7.1.0",
-		"typescript": "^5.1.6",
-		"vitest": "^0.32.4"
+		"@antfu/eslint-config": "^3.4.1",
+		"@types/node": "^22.5.4",
+		"bumpp": "^9.5.2",
+		"eslint": "^9.10.0",
+		"esno": "^4.7.0",
+		"lint-staged": "^15.2.10",
+		"simple-git-hooks": "^2.11.1",
+		"tsup": "^8.2.4",
+		"typescript": "^5.5.4",
+		"vitest": "^2.0.5"
 	},
 	"simple-git-hooks": {
 		"pre-commit": "npx lint-staged"

@@ -1,6 +1,6 @@
 export const CONFIG_FILE_NAME = "frontmatter.json";
 export const WORDS_PER_MINUTE = 500;
-export const GET_DEFAULT_FRONT_MATTER = () => {
+export function GET_DEFAULT_FRONT_MATTER() {
 	return {
 		data: {
 			date: new Date(new Date().toISOString()),
@@ -10,4 +10,4 @@ export const GET_DEFAULT_FRONT_MATTER = () => {
 		},
 		content: "\n# Hello World!\n",
 	};
-};
+}

@@ -1,11 +1,11 @@
-import type { GlobalConfig } from "../../vscode/src/helpers/loadGlobalConfig";
 import { getArticleFromFrontMatter, getFrontMatterFromDocument, setDuration, setLastModifiedDateOnSave } from ".";
+import type { GlobalConfig } from "../../vscode/src/helpers/loadGlobalConfig";
 
-export const updateFrontMatter = ({
+export function updateFrontMatter({
 	isCommittedFile,
 	userConfig,
 	editFileContents,
-}: GlobalConfig) => {
+}: GlobalConfig) {
 	const {
 		newFileIsInsertLastMod,
 		newFileIsInsertReadTime,
@@ -30,10 +30,14 @@ export const updateFrontMatter = ({
 				article = setDuration(article, wordsPerMinute!);
 		}
 		else {
-			insertLastMod && (article = setLastModifiedDateOnSave(article));
-			insertReadTime && (article = setDuration(article, wordsPerMinute));
+			if (insertLastMod) {
+				article = setLastModifiedDateOnSave(article);
+			}
+			if (insertReadTime) {
+				article = setDuration(article, wordsPerMinute);
+			}
 		}
 	}
 
 	return getArticleFromFrontMatter(article);
-};
+}

@@ -23,13 +23,12 @@
 	],
 	"exports": {
 		".": {
-			"types": "./dist/index.d.ts",
-			"require": "./dist/index.js",
-			"import": "./dist/esm/index.js"
+			"import": "./dist/index.js",
+			"require": "./dist/index.cjs"
 		}
 	},
-	"main": "dist/index.js",
-	"module": "./dist/esm/index.js",
+	"main": "dist/index.cjs",
+	"module": "./dist/index.js",
 	"types": "dist/index.d.ts",
 	"typesVersions": {
 		"*": {
@@ -43,8 +42,8 @@
 		"auto-front-matter": "./bin/auto-front-matter.mjs"
 	},
 	"files": [
-		"dist",
-		"bin"
+		"bin",
+		"dist"
 	],
 	"scripts": {
 		"prepublishOnly": "nr build",
@@ -55,16 +54,13 @@
 		"build:watch": "tsup --watch"
 	},
 	"dependencies": {
+		"@inquirer/prompts": "^5.5.0",
 		"cac": "^6.7.14",
-		"chokidar": "^3.5.3",
-		"fast-glob": "^3.3.0",
+		"chokidar": "^3.6.0",
+		"fast-glob": "^3.3.2",
 		"gray-matter": "^4.0.3",
-		"inquirer": "^9.2.7",
 		"reading-time": "^1.5.0",
-		"simple-git": "^3.19.1"
-	},
-	"devDependencies": {
-		"@types/inquirer": "^9.0.3"
+		"simple-git": "^3.26.0"
 	},
 	"publishConfig": {
 		"access": "public",
