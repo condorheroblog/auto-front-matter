@@ -49,9 +49,6 @@
 		"publish": "vsce publish --no-dependencies",
 		"pack": "vsce package --no-dependencies"
 	},
-	"dependencies": {
-		"@inquirer/prompts": "^5.5.0"
-	},
 	"devDependencies": {
 		"@types/vscode": "^1.93.0",
 		"vsce": "^2.15.0"

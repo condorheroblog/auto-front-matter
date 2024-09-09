@@ -71,10 +71,6 @@ importers:
         version: 3.26.0
 
   packages/vscode:
-    dependencies:
-      '@inquirer/prompts':
-        specifier: ^5.5.0
-        version: 5.5.0
     devDependencies:
       '@types/vscode':
         specifier: ^1.93.0
