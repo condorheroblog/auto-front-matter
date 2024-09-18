@@ -15,40 +15,49 @@ Automatic Front Matter for Markdown
 		<a href="https://www.npmjs.com/package/auto-front-matter" target="__blank">
 				<img alt="NPM Downloads" src="https://img.shields.io/npm/dm/auto-front-matter.svg?color=50a36f">
 		</a>
-		<a href="https://marketplace.visualstudio.com/items?itemName=condorhero.auto-front-matter" title="Check it out on the Visual Studio Marketplace"></a>
+		<a href="https://marketplace.visualstudio.com/items?itemName=condorhero.auto-front-matter" target="__blank">
+			<img src="https://img.shields.io/visual-studio-marketplace/v/condorhero.auto-front-matter.svg?color=eee&amp;label=VS%20Code%20Marketplace&logo=visual-studio-code" alt="Visual Studio Marketplace Version" />
+		</a>
+		<a href="https://www.jsdocs.io/package/auto-front-matter">
+			<img src="https://img.shields.io/badge/jsDocs.io-reference-blue" alt="jsDocs">
+		</a>
+		<a href="https://github.com/condorheroblog/auto-front-matter/blob/main/LICENSE" target="__blank">
+				<img alt="License" src="https://img.shields.io/github/license/condorheroblog/auto-front-matter.svg">
+		</a>
 		<br />
 </p>
 
-> Motivation: [vscode-front-matter](https://github.com/estruyf/vscode-front-matter) fails to automatically update reading-time.
+## Features
+
+1. Automatically insert `lastmod` and `duration` fields in the front matter when saving Markdown files.
+2. Generate new Markdown files based on customizable templates using the VS Code command palette.
+3. Easily configure settings through a `frontmatter.json` file in your project root.
+4. Calculate and insert reading time estimates for your Markdown content.
 
 ## Installation
 
-You can get the extension via:
+### VS Code Extension
 
-- The VS Code marketplace: [VS Code Marketplace - Auto Front Matter](https://marketplace.visualstudio.com/items?itemName=condorhero.auto-front-matter).
-- The extension CLI: `ext install condorhero.auto-front-matter`
-- Or by clicking on the following link: <a href="" title="open extension in VS Code" data-vscode="vscode:extension/condorhero.auto-front-matter">open extension in VS Code</a>
-- `npm install -D auto-front-matter`
+Install the Auto Front Matter extension from the Visual Studio Code Marketplace:
 
-## Features
+- [VS Code Marketplace - Auto Front Matter](https://marketplace.visualstudio.com/items?itemName=condorhero.auto-front-matter)
 
-1. Automatically insert `lastmod` and `duration` when saving the md file.
-2. Create an md file according to the template and use the VS Code command panel.
+### NPM Package
 
-```bash
-Windows: ⇧+ctrl+P
-Mac: ⇧+⌘+P
-```
-![⇧+⌘+P](https://user-images.githubusercontent.com/47056890/201308506-a3200f6a-81be-41f4-994b-57d09613bee5.png)
+For usage as an NPM package, refer to the core package documentation:
 
-## auto-front-matter in NPM
+- [Auto Front Matter Core Package Manual](https://github.com/condorheroblog/auto-front-matter/blob/main/packages/core/README.md)
 
-[Click to view the manual](https://github.com/condorheroblog/auto-front-matter/blob/main/packages/core/README.md)
+### VS Code Extension Usage
 
-## auto-front-matter in VS Code
+For detailed instructions on using the VS Code extension, see:
 
-[Click to view the manual](https://github.com/condorheroblog/auto-front-matter/blob/main/packages/vscode/README.md)
+- [Auto Front Matter VS Code Extension Manual](https://github.com/condorheroblog/auto-front-matter/blob/main/packages/vscode/README.md)
+
+## Inspiration
+
+- [vscode-front-matter](https://github.com/estruyf/vscode-front-matter)
 
 ## License
 
-[MIT](https://github.com/condorheroblog/auto-front-matter/blob/main/LICENSE)
+[MIT](https://github.com/condorheroblog/auto-front-matter/blob/main/LICENSE) License © 2022-PRESENT [CondorHeroBlog](https://github.com/condorheroblog)

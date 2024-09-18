@@ -7,18 +7,12 @@
 	<a href="https://marketplace.visualstudio.com/items?itemName=condorhero.auto-front-matter" title="Check it out on the Visual Studio Marketplace"></a>
 </p>
 
-> Automatically insert lastmod/duration in front-matter when you save an md file，and VS Code >= 1.7.3
+> Automatically insert `lastmod` and `duration` fields in the front matter when saving Markdown files，and VS Code >= 1.93.1
 
 ## Features
 
-1. Automatically insert `lastmod` and `duration` when saving the md file.
-2. Create an md file according to the template and use the VS Code command panel.
-
-```bash
-Windows: ⇧+ctrl+P
-Mac: ⇧+⌘+P
-```
-![⇧+⌘+P](https://user-images.githubusercontent.com/47056890/201308506-a3200f6a-81be-41f4-994b-57d09613bee5.png)
+1. Automatically insert `lastmod` and `duration` fields in the front matter when saving Markdown files.
+2. Generate new Markdown files based on customizable templates using the VS Code command palette.
 
 ## Installation
 
@@ -29,33 +23,54 @@ You can get the extension via:
 
 ## Usage
 
-![demo](https://user-images.githubusercontent.com/47056890/201293665-e720e6a7-5d86-40a2-a612-750889aa89c3.gif)
+![Demo](https://user-images.githubusercontent.com/47056890/201293665-e720e6a7-5d86-40a2-a612-750889aa89c3.gif)
 
-A `frontmatter.json` file is required in the project directory. The `frontmatter.json` file supports the following fields:
+A `frontmatter.json` file is required in the project root directory. This file supports the following configuration options:
 
-- `dirname`: Specify the directory to be updated, using [glob](https://github.com/isaacs/node-glob) by default, the current directory.
-- `globOptions`: [glob](https://github.com/isaacs/node-glob)'s [options](https://github.com/isaacs/node-glob#options).
-- `insertLastMod`: Whether to insert `lastmod` in `front-matter`, default `true`.
-- `insertReadTime`: Whether to insert `duration` in `front-matter`, default `true`.
-- `newFileIsInsertLastMod`: Whether to insert `lastmod` in `front-matter` for uncommitted file, default `false`.
-- `newFileIsInsertReadTime`: Whether to insert `duration` in `front-matter` for uncommitted file, default `false`.
-- `wordsPerMinute`: words per minute, default `500`.
-- `template`: Creating Markdown file depends on this template, default [GET_DEFAULT_FRONT_MATTER](https://github.com/condorheroblog/auto-front-matter/blob/main/packages/core/src/constant/index.ts#LL3C22-L3C22).
+- `dirname`: Specifies the directory to be processed using [glob](https://github.com/isaacs/node-glob) syntax. Defaults to the current directory.
+- `globOptions`: Additional [options](https://github.com/isaacs/node-glob#options) for the glob pattern.
+- `insertLastMod`: Determines whether to insert `lastmod` in the front matter. Default is `true`.
+- `insertReadTime`: Determines whether to insert `duration` in the front matter. Default is `true`.
+- `newFileIsInsertLastMod`: Determines whether to insert `lastmod` in the front matter for new, uncommitted files. Default is `false`.
+- `newFileIsInsertReadTime`: Determines whether to insert `duration` in the front matter for new, uncommitted files. Default is `false`.
+- `wordsPerMinute`: Specifies the reading speed in words per minute for duration calculation. Default is `500`.
+- `template`: Defines the template used for creating new Markdown files.
 
-```js
-export function GET_DEFAULT_FRONT_MATTER() {
-	return {
-		data: {
-			date: new Date(new Date().toISOString()),
-			author: "CondorHero",
-			tags: ["hello", "world"],
-			categories: "blog",
+Here's a default `template` example of a `frontmatter.json` configuration:
+
+```json
+{
+	"template": {
+		"data": {
+			"date": "{{now}}",
+			"author": "CondorHero",
+			"tags": [
+				"hello",
+				"world"
+			],
+			"categories": "blog"
 		},
-		content: "\n# Hello World!\n",
-	};
+		"content": "\n# Hello World!\n"
+	}
 }
 ```
 
+The `date` field supports four parameters:
+
+1. `year` - The year of the current date.
+2. `month` - The month of the current date.
+3. `day` - The day of the current date.
+4. `now` - The current date.
+
+## Commands
+
+```bash
+Windows: ⇧+ctrl+P
+Mac: ⇧+⌘+P
+```
+
+![⇧+⌘+P](https://user-images.githubusercontent.com/47056890/201308506-a3200f6a-81be-41f4-994b-57d09613bee5.png)
+
 ## License
 
-[MIT](https://github.com/condorheroblog/auto-front-matter/blob/main/LICENSE)
+[MIT](https://github.com/condorheroblog/auto-front-matter/blob/main/LICENSE) License © 2022-PRESENT [CondorHeroBlog](https://github.com/condorheroblog)
